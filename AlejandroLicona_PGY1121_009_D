@@ -1,0 +1,85 @@
+
+def grabar_vehiculo():
+    tipo = input("Tipo de vehículo: ")
+    patente = input("Patente: ")
+    marca = input("Marca: ")
+    precio = int(input("Precio: "))
+    multas = []
+    while True:
+        opcion = input("¿Agregar multa? (s/n): ")
+        if opcion.lower() == "s":
+            monto = float(input("Monto de la multa: "))
+            fecha = input("Fecha de la multa: ")
+            multas.append((monto, fecha))
+        else:
+            break
+    fecha_registro = int(input("Fecha de registro del vehículo D/M/A: "))
+    dueño = input("Nombre del dueño: ")
+    
+    if len(patente) == 6 and 2 <= len(marca) >= 15 and precio < 5000000:
+        vehiculo = {
+            "Tipo": tipo,
+            "Patente": patente,
+            "Marca": marca,
+            "Precio": precio,
+            "Multas": multas,
+            "Fecha de registro": fecha_registro,
+            "Dueño": dueño
+        }
+       
+        print("Datos del vehículo ingresado exitosamente.")
+    else:
+        print("Verifica los datos ingresados.")
+
+def buscar_vehiculo(patente,tipo,marca,precio,multas,fecha_registro,dueño):
+    print("Su vehiculo es un(a): ", tipo)
+    print("La marca del vehiculo es", marca) 
+    print("El precio del vehiculo es", (precio))
+    print("Multas del vehiculo:", [multas])
+    print("Fecha de registro del vehiculo: ", fecha_registro)
+    print("El dueño del vehiculo es: ", dueño)
+
+def imprimir_certificados(patente, dueño):
+    int(input("Ingrese la patente del vehiculo:"))
+    print ("1. Certificado de Emisión de contaminantes [1.500]")
+    print ("2. Certificado de de anotaciones vigentes [2.000]")
+    print ("3. Certificado de de multas [2.500]")
+
+    while True:
+        op = input("Ingrese su tipo certificado (0 para finalizar): ")
+        if op == 1:
+            print("Certificado de Emisión de contaminantes", [patente and dueño] )
+        elif op == 2:
+            print("Certificado de anotaciones vigentes ", [patente and dueño])
+        elif op == "3":
+            print("Certificado de multas", [patente and dueño])
+        else:
+            print("Certificado desconocido")
+             
+def menu():
+    print("Auto Seguro")
+    print("1. Grabar vehículo")
+    print("2. Buscar vehículo")
+    print("3. Imprimir certificados")
+    print("4. Salir")
+    
+    while True:
+        opcion = input("Ingrese una opción: ")
+
+        if opcion == "1":
+            grabar_vehiculo()
+        elif opcion == "2":
+            patente = input("Ingrese la patente del vehículo: ")
+            buscar_vehiculo(patente)
+        elif opcion == "3":
+            imprimir_certificados()
+        elif opcion == "4":
+            print("Gracias por usar el programa de Alejandro Licona Versión 1.0")
+            break
+        else:
+            print("Opción inválida. Por favor, ingrese una opción válida.")
+
+
+from funciones import menu
+
+menu()
